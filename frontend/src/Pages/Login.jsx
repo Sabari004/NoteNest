@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Note from "../assets/notevector.png";
 import { GoogleLogin } from "@react-oauth/google";
-
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="lg:h-screen md:h-screen bg-gray-900 ">
@@ -25,8 +27,8 @@ function Login() {
             </a>
           </div>
         </header>
-        <section className="text-gray-400 bg-gray-900 body-font botthom lg:pt-10">
-          <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center ">
+        <section className="text-gray-400 bg-gray-900 body-font botthom ">
+          <div className="  container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
               <img
                 className="object-cover object-center rounded h-3/4"
@@ -67,7 +69,7 @@ function Login() {
                 Neutra shabby chic ramps, viral fixie.
               </p> */}
               <div className="flex lg:flex-row md:flex-col text-gray-300">
-                <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
+                {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -82,18 +84,20 @@ function Login() {
                     </span>
                     <span className="title-font font-medium">Google Play</span>
                   </span>
-                  <GoogleLogin
-                    onSuccess={(credentialResponse) => {
-                      // console.log(credentialResponse);
-                      const decode = jwtDecode(credentialResponse.credential);
-                      console.log(decode);
-                      navigate("/home");
-                    }}
-                    onError={() => {
-                      console.log("Login Failed");
-                    }}
-                  />
-                </button>
+                </button> */}
+                <GoogleLogin
+                  // className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-non"
+                  onSuccess={(credentialResponse) => {
+                    // console.log(credentialResponse);
+                    const decode = jwtDecode(credentialResponse.credential);
+                    console.log(decode);
+                    localStorage.setItem("userData", JSON.stringify(decode));
+                    navigate("/home");
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
                 {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
