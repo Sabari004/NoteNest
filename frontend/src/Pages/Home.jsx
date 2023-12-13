@@ -1,12 +1,20 @@
 import { Fragment, useEffect, useState } from "react";
 import Model from "../Components/Model";
-
+import axios from "axios";
+import "../App.css";
+import { useNavigate } from "react-router-dom";
 function Home() {
   const [userData, setUserData] = useState({});
   const [showModel, setShowMode] = useState(false);
+  const [notes, setNotes] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("userData")));
     console.log(userData);
+    axios.get("http://localhost:8080/").then((e) => {
+      setNotes(e.data);
+      console.log(notes);
+    });
   }, []);
   return (
     <>
@@ -135,6 +143,10 @@ function Home() {
                 <a
                   href="#"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  onClick={(e) => {
+                    localStorage.clear();
+                    navigate("/");
+                  }}
                 >
                   <svg
                     class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -201,25 +213,20 @@ function Home() {
           </div>
           <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
             <div class="grid grid-cols-3 gap-4 mb-4">
-              <div class="flex items-center justify-center rounded bg-gray-50 h-40 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    class="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
+              {notes.length > 0 &&
+                notes.map((e) => (
+                  <div className="bg-gray-500 rounded cursor-pointer ">
+                    <div
+                      key={e.id}
+                      className="flex items-center justify-center rounded bg-gray-50 h-40 dark:bg-gray-800 botton two"
+                    >
+                      <p className="text-2xl text-gray-400 dark:text-gray-300">
+                        <h3>{e.title}</h3>
+                        {/* <button></byutton> */}
+                      </p>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
