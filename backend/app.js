@@ -27,6 +27,16 @@ app.get("/", async (req, res) => {
     res.json({ message: err });
   }
 });
+app.get("/id/:id", async (req, res) => {
+  try {
+    const posts = await Note.findById(req.params.id);
+    res.json(posts);
+  } catch (err) {
+    res.json({ message: err });
+  }
+  // console.log();
+  // return req;
+});
 app.post("/", async (req, res) => {
   const note = new Note({
     mail: req.body.mail,

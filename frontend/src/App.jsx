@@ -3,6 +3,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import View from "./Pages/View";
 function App() {
   const navigate = useNavigate();
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/view/:id" element={<View />} />
       </Routes>
     </GoogleOAuthProvider>
   );
