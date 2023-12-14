@@ -21,9 +21,9 @@ function Home() {
     <>
       <Fragment>
         <SideBar />
-        <div class="p-4 sm:ml-64 bg-gray-900 h-screen ">
+        <div class="p-4 sm:ml-64 bg-gray-900 h-full min-h-screen relative">
           <div
-            className="w-12 h-12 bg-blue-500 text-white rounded-full text-lg flex items-center justify-center absolute bottom-0 right-0 m-3 hover:bg-blue-900 hover:scale-110"
+            className="w-12 h-12 bg-yellow-500 fixed z-40 text-white rounded-full text-lg flex items-center justify-center  bottom-0 right-0 m-3 hover:bg-yellow-600 hover:scale-110"
             variant="outline"
             onClick={() => {
               setShowMode(true);
@@ -46,7 +46,7 @@ function Home() {
               <path d="M12 5v14" />
             </svg>
           </div>
-          <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          <div class="p-4 border-2 border-[#6366f1] rounded-lg">
             <div class="grid grid-cols-3 gap-4 mb-4">
               {notes.length > 0 &&
                 notes.map((e) => (
