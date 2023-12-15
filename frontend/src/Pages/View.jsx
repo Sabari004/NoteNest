@@ -67,7 +67,7 @@ function View() {
         <div className="border-2 border-[#6366f1] rounded-lg  ">
           {notes !== null && (
             <div className="prose lg:prose-xl text-white ">
-              <ReactMarkdown className=" prose prose-invert  w-full  pt-10 p-10 text-white ">
+              <ReactMarkdown className=" prose prose-invert   pt-10 p-10 text-white ">
                 {notes.note}
               </ReactMarkdown>
             </div>

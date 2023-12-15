@@ -3,15 +3,20 @@ import { useState } from "react";
 
 const Model = ({ isVisible, onClose, onCreate }) => {
   const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   if (!isVisible) return null;
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
+  };
+  const handleRefresh = (e) => {
+    onCreate();
   };
   const handleCreate = () => {
     const dum = {
       mail: JSON.parse(localStorage.getItem("userData")).email,
       note: "# write yours",
       title: title,
+      desc: desc,
     };
     console.log(dum);
     axios
@@ -57,8 +62,8 @@ const Model = ({ isVisible, onClose, onCreate }) => {
                 Title
               </label>
               <input
-                type="email"
-                id="email"
+                type="title"
+                id="title"
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);
@@ -67,12 +72,27 @@ const Model = ({ isVisible, onClose, onCreate }) => {
                 class="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
+            <div class="relative mb-4">
+              <label for="email" class="leading-7 text-sm text-gray-400">
+                Description
+              </label>
+              <input
+                type="text"
+                id="desc"
+                value={desc}
+                onChange={(e) => {
+                  setDesc(e.target.value);
+                }}
+                name="desc"
+                class="w-full bg-gray-800 rounded border mb-5 border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
 
             <button
               class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mb-3"
-              onClick={(e) => {
+              onClick={() => {
                 handleCreate();
-                onCreate();
+                handleRefresh;
               }}
             >
               Create

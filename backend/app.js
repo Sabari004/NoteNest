@@ -52,6 +52,8 @@ app.post("/", async (req, res) => {
     mail: req.body.mail,
     note: req.body.note,
     title: req.body.title,
+    desc: req.body.desc,
+    date: new Date(),
   });
   try {
     const savedNote = await note.save();
@@ -60,6 +62,24 @@ app.post("/", async (req, res) => {
     res.json({ message: err });
   }
 });
+app.post("/user", async (req, res) => {
+  const { email, name, picture } = req.body;
+  try {
+    const existingUser = await User.find({ email });
+
+    if (existingUser.length === 0) {
+      const user = new User({ email, name, picture });
+      const savedUser = await user.save();
+      // console.log("dslf;l");
+      res.json(savedUser);
+    } else {
+      res.status(400).json({ message: "User already exists" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Error saving user", error: err.message });
+  }
+});
+
 app.post("/id/:id", async (req, res) => {
   const updatedFields = {
     mail: req.body.mail,
