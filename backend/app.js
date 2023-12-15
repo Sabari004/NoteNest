@@ -37,6 +37,16 @@ app.get("/id/:id", async (req, res) => {
   // console.log();
   // return req;
 });
+app.get("/email/:email", async (req, res) => {
+  try {
+    const posts = await Note.find({ mail: req.params.email });
+    res.json(posts);
+  } catch (err) {
+    res.json({ message: err });
+  }
+  // console.log();
+  // return req;
+});
 app.post("/", async (req, res) => {
   const note = new Note({
     mail: req.body.mail,
@@ -50,6 +60,28 @@ app.post("/", async (req, res) => {
     res.json({ message: err });
   }
 });
+app.post("/id/:id", async (req, res) => {
+  const updatedFields = {
+    mail: req.body.mail,
+    note: req.body.note,
+    title: req.body.title,
+  };
+
+  try {
+    const updatedNote = await Note.findByIdAndUpdate(
+      req.params.id,
+      updatedFields,
+      { new: true }
+    );
+    if (!updatedNote) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+    res.json(updatedNote);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // app.get("/user", async (req, res) => {
 //   try {
 //     const posts = await User.find();

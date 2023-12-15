@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const Model = ({ isVisible, onClose }) => {
+const Model = ({ isVisible, onClose, onCreate }) => {
   const [title, setTitle] = useState("");
   if (!isVisible) return null;
   const handleClose = (e) => {
@@ -70,7 +70,10 @@ const Model = ({ isVisible, onClose }) => {
 
             <button
               class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mb-3"
-              onClick={(e) => handleCreate()}
+              onClick={(e) => {
+                handleCreate();
+                onCreate();
+              }}
             >
               Create
             </button>

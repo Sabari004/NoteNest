@@ -22,6 +22,18 @@ function Edit() {
     });
     // }
   }, [id]);
+  const handleSubmit = () => {
+    axios
+      .post(`http://localhost:8080/id/${id}`, {
+        mail: notes.mail,
+        note: note,
+        title: note.title,
+      })
+      .then((r) => {
+        console.log(r);
+        navigate(`/view/${id}`);
+      });
+  };
   return (
     <>
       <SideBar />
@@ -45,7 +57,12 @@ function Edit() {
             </h1>
           </div>
           <div className="flex justify-between">
-            <button class="my-auto bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 border flex border-yellow-500 rounded ">
+            <button
+              class="my-auto bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 border flex border-yellow-500 rounded "
+              onClick={(e) => {
+                handleSubmit();
+              }}
+            >
               <img src={Save} className="w-5 h-5" />
               {/* <span>Save</span> */}
             </button>

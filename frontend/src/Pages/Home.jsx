@@ -9,13 +9,22 @@ function Home() {
   const [showModel, setShowMode] = useState(false);
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
+  const getNotes = () => {
+    axios
+      .get(
+        `http://localhost:8080/email/${
+          JSON.parse(localStorage.getItem("userData")).email
+        }`
+      )
+      .then((e) => {
+        setNotes(e.data);
+        console.log(notes);
+      });
+  };
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("userData")));
     console.log(userData);
-    axios.get("http://localhost:8080/").then((e) => {
-      setNotes(e.data);
-      console.log(notes);
-    });
+    getNotes();
   }, []);
   return (
     <>
@@ -27,6 +36,7 @@ function Home() {
             variant="outline"
             onClick={() => {
               setShowMode(true);
+
               console.log(showModel);
             }}
           >
@@ -74,6 +84,7 @@ function Home() {
           onClose={() => {
             setShowMode(false);
           }}
+          onCreate={() => getNotes()}
         />
       </Fragment>
     </>

@@ -124,8 +124,8 @@ function SideBar() {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={(e) => {
                   localStorage.clear();
@@ -148,7 +148,7 @@ function SideBar() {
                   />
                 </svg>
                 <span class="flex-1 ms-3 whitespace-nowrap">Logout</span>
-              </a>
+              </Link>
             </li>
           </ul>
           <ul class="self-end absolute inset-x-0 bottom-0 px-3 py-4">
