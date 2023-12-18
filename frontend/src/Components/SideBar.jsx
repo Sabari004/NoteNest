@@ -1,36 +1,57 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function SideBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+  // const handleClose = (e) => {
+  //   if (e.target.id !== "dummy") setIsOpen(!isOpen);
+  // };
   return (
     <>
-      <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
-        type="button"
-        class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      <div
+        className="bg-gray-800 "
+        // onClick={(e) => {
+        //   handleClose(e);
+        // }}
       >
-        <span class="sr-only">Open sidebar</span>
-        <svg
-          class="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+        <button
+          onClick={toggleSidebar}
+          aria-controls="default-sidebar"
+          type="button"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
-          <path
-            clip-rule="evenodd"
-            fill-rule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg>
-      </button>
-
+          <span className="sr-only">
+            {isOpen ? "Close sidebar" : "Open sidebar"}
+          </span>
+          <svg
+            class="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+            ></path>
+          </svg>
+          {/* This text will change based on sidebar state */}
+        </button>
+      </div>
       <aside
         id="default-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 flex flex-col justify-between"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } sm:translate-x-0 flex flex-col justify-between`}
       >
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 relative">
+        <div
+          class=" h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 relative"
+          id="dummy"
+        >
           <ul class="space-y-2 font-medium">
             <li>
               <a
@@ -56,6 +77,7 @@ function SideBar() {
               <Link
                 to="/home"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={toggleSidebar}
               >
                 <svg
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
