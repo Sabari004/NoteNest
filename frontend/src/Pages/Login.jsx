@@ -8,46 +8,47 @@ function Login() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="lg:h-screen md:h-screen bg-gray-900 hidden sm:block">
-        <header className=" text-gray-400 bg-gray-900 body-font ">
-          <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              <span className="ml-3 text-xl">NoteNest</span>
-            </a>
-          </div>
-        </header>
-        <section className="text-gray-400 bg-gray-900 body-font botthom ">
-          <div className="  container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-            <div className=" lg:w-4/10 md:w-1/2 w-5/6 mb-10 md:mb-0">
-              <img
-                className="object-cover object-center rounded h-3/4"
-                alt="Note Vector"
-                src={Note}
-              />
+      <div className="hidden sm:block">
+        <div className="lg:h-screen md:h-screen bg-gray-900 ">
+          <header className=" text-gray-400 bg-gray-900 body-font ">
+            <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span className="ml-3 text-xl">NoteNest</span>
+              </a>
             </div>
-            <div className="lg:flex-grow md:w-1/2  md:pl-16 mr-10 flex flex-col md:items-start md:text-left items-center text-center">
-              <h1 className="title-font sm:text-4xl text-3xl mb-14 font-medium text-white">
-                Capture Your Thoughts Anywhere, Anytime
-              </h1>
-              <p className="mb-12 leading-relaxed">
-                Discover a seamless blend of classic and modern tools for your
-                note-taking needs. Our collection features reliable typewriters,
-                alongside state-of-the-art digital devices like iPhones, perfect
-                for documenting your thoughts on the go
-              </p>
-              {/* <div className="flex w-full md:justify-start justify-center items-end">
+          </header>
+          <section className="text-gray-400 bg-gray-900 body-font botthom ">
+            <div className="  container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+              <div className=" lg:w-4/10 md:w-1/2 w-5/6 mb-10 md:mb-0">
+                <img
+                  className="object-cover object-center rounded h-3/4"
+                  alt="Note Vector"
+                  src={Note}
+                />
+              </div>
+              <div className="lg:flex-grow md:w-1/2  md:pl-16 mr-10 flex flex-col md:items-start md:text-left items-center text-center">
+                <h1 className="title-font sm:text-4xl text-3xl mb-14 font-medium text-white">
+                  Capture Your Thoughts Anywhere, Anytime
+                </h1>
+                <p className="mb-12 leading-relaxed">
+                  Discover a seamless blend of classic and modern tools for your
+                  note-taking needs. Our collection features reliable
+                  typewriters, alongside state-of-the-art digital devices like
+                  iPhones, perfect for documenting your thoughts on the go
+                </p>
+                {/* <div className="flex w-full md:justify-start justify-center items-end">
                 <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
                   <label
                     for="hero-field"
@@ -66,11 +67,11 @@ function Login() {
                   Button
                 </button>
               </div> */}
-              {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">
+                {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">
                 Neutra shabby chic ramps, viral fixie.
               </p> */}
-              <div className="flex lg:flex-row md:flex-col text-gray-300">
-                {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
+                <div className="flex lg:flex-row md:flex-col text-gray-300">
+                  {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -86,29 +87,29 @@ function Login() {
                     <span className="title-font font-medium">Google Play</span>
                   </span>
                 </button> */}
-                <GoogleLogin
-                  // className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-non"
-                  onSuccess={(credentialResponse) => {
-                    // console.log(credentialResponse);
-                    const decode = jwtDecode(credentialResponse.credential);
-                    console.log(decode);
-                    localStorage.setItem("userData", JSON.stringify(decode));
-                    axios
-                      .post("http://localhost:8080/user", {
-                        email: decode.email,
-                        name: decode.name,
-                        picture: decode.picture,
-                      })
-                      .then((r) => {
-                        console.log(r);
-                      });
-                    navigate("/home");
-                  }}
-                  onError={() => {
-                    console.log("Login Failed");
-                  }}
-                />
-                {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0">
+                  <GoogleLogin
+                    // className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-non"
+                    onSuccess={(credentialResponse) => {
+                      // console.log(credentialResponse);
+                      const decode = jwtDecode(credentialResponse.credential);
+                      console.log(decode);
+                      localStorage.setItem("userData", JSON.stringify(decode));
+                      axios
+                        .post("http://localhost:8080/user", {
+                          email: decode.email,
+                          name: decode.name,
+                          picture: decode.picture,
+                        })
+                        .then((r) => {
+                          console.log(r);
+                        });
+                      navigate("/home");
+                    }}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}
+                  />
+                  {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -125,51 +126,53 @@ function Login() {
                     <span className="title-font font-medium">App Store</span>
                   </span>
                 </button> */}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
-      <div className="h-screen bg-gray-900 ">
-        <header className=" text-gray-400 bg-gray-900 body-font mb-4 ">
-          <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a className="flex title-font font-medium items-center text-white md:mb-0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              <span className="ml-3 text-xl">NoteNest</span>
-            </a>
-          </div>
-        </header>
-        <section className="text-gray-400 bg-gray-900 body-font botthom ">
-          <div className="  container mx-auto flex px-5  md:flex-row flex-col items-center">
-            <div className=" mt-10  mb-10 md:mb-0">
-              <img
-                className="object-cover object-center rounded h-3/4"
-                alt="Note Vector"
-                src={Note}
-              />
+      <div className="lg:hidden">
+        <div className="h-screen bg-gray-900 ">
+          <header className=" text-gray-400 bg-gray-900 body-font mb-4 ">
+            <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <a className="flex title-font font-medium items-center text-white md:mb-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span className="ml-3 text-xl">NoteNest</span>
+              </a>
             </div>
-            <div className="lg:flex-grow md:w-1/2  md:pl-16  flex flex-col md:items-start md:text-left items-center text-center">
-              <h1 className="title-font sm:text-4xl text-3xl mb-14 font-medium text-white">
-                Capture Your Thoughts Anywhere, Anytime
-              </h1>
-              <p className="mb-12 leading-relaxed">
-                Discover a seamless blend of classic and modern tools for your
-                note-taking needs. Our collection features reliable typewriters,
-                alongside state-of-the-art digital devices like iPhones, perfect
-                for documenting your thoughts on the go
-              </p>
-              {/* <div className="flex w-full md:justify-start justify-center items-end">
+          </header>
+          <section className="text-gray-400 bg-gray-900 body-font botthom ">
+            <div className="  container mx-auto flex px-5  md:flex-row flex-col items-center">
+              <div className=" mt-10  mb-10 md:mb-0">
+                <img
+                  className="object-cover object-center rounded h-3/4"
+                  alt="Note Vector"
+                  src={Note}
+                />
+              </div>
+              <div className="lg:flex-grow md:w-1/2  md:pl-16  flex flex-col md:items-start md:text-left items-center text-center">
+                <h1 className="title-font sm:text-4xl text-3xl mb-14 font-medium text-white">
+                  Capture Your Thoughts Anywhere, Anytime
+                </h1>
+                <p className="mb-12 leading-relaxed">
+                  Discover a seamless blend of classic and modern tools for your
+                  note-taking needs. Our collection features reliable
+                  typewriters, alongside state-of-the-art digital devices like
+                  iPhones, perfect for documenting your thoughts on the go
+                </p>
+                {/* <div className="flex w-full md:justify-start justify-center items-end">
                 <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
                   <label
                     for="hero-field"
@@ -188,11 +191,11 @@ function Login() {
                   Button
                 </button>
               </div> */}
-              {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">
+                {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">
                 Neutra shabby chic ramps, viral fixie.
               </p> */}
-              <div className="flex lg:flex-row md:flex-col text-gray-300">
-                {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
+                <div className="flex lg:flex-row md:flex-col text-gray-300">
+                  {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -208,29 +211,29 @@ function Login() {
                     <span className="title-font font-medium">Google Play</span>
                   </span>
                 </button> */}
-                <GoogleLogin
-                  // className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-non"
-                  onSuccess={(credentialResponse) => {
-                    // console.log(credentialResponse);
-                    const decode = jwtDecode(credentialResponse.credential);
-                    console.log(decode);
-                    localStorage.setItem("userData", JSON.stringify(decode));
-                    axios
-                      .post("http://localhost:8080/user", {
-                        email: decode.email,
-                        name: decode.name,
-                        picture: decode.picture,
-                      })
-                      .then((r) => {
-                        console.log(r);
-                      });
-                    navigate("/home");
-                  }}
-                  onError={() => {
-                    console.log("Login Failed");
-                  }}
-                />
-                {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0">
+                  <GoogleLogin
+                    // className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-non"
+                    onSuccess={(credentialResponse) => {
+                      // console.log(credentialResponse);
+                      const decode = jwtDecode(credentialResponse.credential);
+                      console.log(decode);
+                      localStorage.setItem("userData", JSON.stringify(decode));
+                      axios
+                        .post("http://localhost:8080/user", {
+                          email: decode.email,
+                          name: decode.name,
+                          picture: decode.picture,
+                        })
+                        .then((r) => {
+                          console.log(r);
+                        });
+                      navigate("/home");
+                    }}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}
+                  />
+                  {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -247,10 +250,11 @@ function Login() {
                     <span className="title-font font-medium">App Store</span>
                   </span>
                 </button> */}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </>
   );
