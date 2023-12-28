@@ -15,7 +15,7 @@ function Edit() {
     setId(param.id);
     console.log(id);
     // if (id !== null) {
-    axios.get(`http://localhost:8080/id/${id}`).then((r) => {
+    axios.get(`https://note-nest-theta.vercel.app/id/${id}`).then((r) => {
       //   console.log(r);
       setNotes(r.data);
       setNote(r.data.note);
@@ -24,7 +24,7 @@ function Edit() {
   }, [id]);
   const handleSubmit = () => {
     axios
-      .post(`http://localhost:8080/id/${id}`, {
+      .post(`https://note-nest-theta.vercel.app/id/${id}`, {
         mail: notes.mail,
         note: note,
         title: note.title,

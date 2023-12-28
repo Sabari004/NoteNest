@@ -49,7 +49,7 @@ function SideBar() {
         } sm:translate-x-0 flex flex-col justify-between`}
       >
         <div
-          class=" h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 relative"
+          class=" h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 relative"
           id="dummy"
         >
           <ul class="space-y-2 font-medium">

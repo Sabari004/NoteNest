@@ -95,7 +95,7 @@ function Login() {
                       console.log(decode);
                       localStorage.setItem("userData", JSON.stringify(decode));
                       axios
-                        .post("http://localhost:8080/user", {
+                        .post("https://note-nest-theta.vercel.app/user", {
                           email: decode.email,
                           name: decode.name,
                           picture: decode.picture,
@@ -134,8 +134,8 @@ function Login() {
       </div>
       <div className="lg:hidden">
         <div className="h-screen bg-gray-900 ">
-          <header className=" text-gray-400 bg-gray-900 body-font mb-4 ">
-            <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <header className=" text-gray-400 bg-gray-900 body-font mb-4  ">
+            <div className="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
               <a className="flex title-font font-medium items-center text-white md:mb-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -153,17 +153,17 @@ function Login() {
               </a>
             </div>
           </header>
-          <section className="text-gray-400 bg-gray-900 body-font botthom ">
+          <section className="text-gray-400 bg-gray-900 body-font botthom bottom-0 h-screen relative  ">
             <div className="  container mx-auto flex px-5  md:flex-row flex-col items-center">
-              <div className=" mt-10  mb-10 md:mb-0">
+              <div className=" mt-7 w-5/6  mb-5 md:mb-0">
                 <img
                   className="object-cover object-center rounded h-3/4"
                   alt="Note Vector"
                   src={Note}
                 />
               </div>
-              <div className="lg:flex-grow md:w-1/2  md:pl-16  flex flex-col md:items-start md:text-left items-center text-center">
-                <h1 className="title-font sm:text-4xl text-3xl mb-14 font-medium text-white">
+              <div className="lg:flex-grow md:w-1/2  md:pl-16  flex flex-col md:items-start md:text-left items-center text-center  absolute">
+                <h1 className="title-font sm:text-4xl text-3xl mb-10 font-medium text-white">
                   Capture Your Thoughts Anywhere, Anytime
                 </h1>
                 <p className="mb-12 leading-relaxed">
@@ -194,7 +194,7 @@ function Login() {
                 {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">
                 Neutra shabby chic ramps, viral fixie.
               </p> */}
-                <div className="flex lg:flex-row md:flex-col text-gray-300">
+                <div className="flex lg:flex-row md:flex-col text-gray-300 mb-5">
                   {/* <button className="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -219,7 +219,7 @@ function Login() {
                       console.log(decode);
                       localStorage.setItem("userData", JSON.stringify(decode));
                       axios
-                        .post("http://localhost:8080/user", {
+                        .post("https://note-nest-theta.vercel.app/user", {
                           email: decode.email,
                           name: decode.name,
                           picture: decode.picture,

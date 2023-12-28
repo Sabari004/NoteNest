@@ -14,7 +14,7 @@ function View() {
     setId(param.id);
     console.log(id);
     // if (id !== null) {
-    axios.get(`http://localhost:8080/id/${id}`).then((r) => {
+    axios.get(`https://note-nest-theta.vercel.app/id/${id}`).then((r) => {
       //   console.log(r);
       setNotes(r.data);
     });

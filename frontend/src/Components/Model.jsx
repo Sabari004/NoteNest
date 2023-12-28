@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Model = ({ isVisible, onClose, onCreate }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const navigate = useNavigate();
   if (!isVisible) return null;
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
+
   const handleRefresh = (e) => {
     onCreate();
   };
@@ -20,9 +23,11 @@ const Model = ({ isVisible, onClose, onCreate }) => {
     };
     console.log(dum);
     axios
-      .post("http://localhost:8080/", dum)
+      .post("https://note-nest-theta.vercel.app/", dum)
       .then((e) => {
         // console.log("success");
+        // navigate("/home");
+        handleRefresh();
         onClose();
       })
       .catch((r) => {
@@ -93,7 +98,7 @@ const Model = ({ isVisible, onClose, onCreate }) => {
                 class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mb-3"
                 onClick={() => {
                   handleCreate();
-                  handleRefresh;
+                  // handleRefresh;
                 }}
               >
                 Create
@@ -165,7 +170,7 @@ const Model = ({ isVisible, onClose, onCreate }) => {
                 class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mb-3"
                 onClick={() => {
                   handleCreate();
-                  handleRefresh;
+                  // handleRefresh;
                 }}
               >
                 Create

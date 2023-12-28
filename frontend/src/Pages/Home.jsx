@@ -17,7 +17,7 @@ function Home() {
   const getNotes = () => {
     axios
       .get(
-        `http://localhost:8080/email/${
+        `https://note-nest-theta.vercel.app/email/${
           JSON.parse(localStorage.getItem("userData")).email
         }`
       )
